@@ -1,0 +1,25 @@
+/*Mobile is default*/
+.title {
+  font-size: 1.2em;
+}
+
+/*Phones in landscape*/
+@media only screen and (min-width: 600px) {
+  .title {
+    font-size: 1.5em;
+  }
+}
+
+/*Tablets*/
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 2em;
+  }
+}
+
+/*Desktops*/
+@media only screen and (min-width: 1200px) {
+  .title {
+    font-size: 3em;
+  }
+}
