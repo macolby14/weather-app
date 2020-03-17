@@ -1,0 +1,38 @@
+.Digit {
+  font-size: 6em;
+  border: 2px solid white;
+  margin: 0 5px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 20%;
+}
+
+.Digit input {
+  background: inherit;
+  height: 80%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  text-align: center;
+  color: inherit;
+  font: inherit;
+  border: none;
+}
+
+.Digit input:focus {
+  background-color: inherit;
+  outline: none;
+}
+
+@media (min-width: 600px) {
+  .Digit {
+    width: 12%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Digit {
+    width: 7%;
+  }
+}
