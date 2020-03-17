@@ -5,6 +5,8 @@ import classes from "./ZipCode.module.css";
 
 const ZipCode = props => {
   const digits = props.digits.map((e, i) => {
+    const shouldHaveFocus = props.activeDigitIndex === i;
+
     return (
       <Digit
         key={i}
@@ -12,6 +14,7 @@ const ZipCode = props => {
         digitChanged={e => {
           props.digitChanged(e, i);
         }}
+        hasFocus={shouldHaveFocus}
       />
     );
   });

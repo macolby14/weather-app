@@ -5,14 +5,16 @@ import ZipCode from "../../ZipCode/ZipCode";
 
 class WeatherDisplay extends React.Component {
   state = {
-    digits: [0, 0, 0, 0, 0],
+    digits: [null, null, null, null, null],
     activeDigitIndex: 0
   };
 
   digitChangedHandler = (e, digitIndex) => {
     const copyDigits = [...this.state.digits]; //avoid changing state directly
     copyDigits[digitIndex] = e.target.value;
-    this.setState({ digits: copyDigits });
+    const digitIsEmpty = copyDigits[digitIndex] === "";
+    const newDigitIndex = digitIsEmpty ? digitIndex : digitIndex + 1;
+    this.setState({ digits: copyDigits, activeDigitIndex: newDigitIndex });
   };
 
   render() {
