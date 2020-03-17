@@ -10,7 +10,7 @@ const Digit = props => {
       textInput.current.focus();
       textInput.current.selectionStart = 0;
     }
-  });
+  }, [props.value, props.hasFocus]);
 
   return (
     <div className={classes.Digit}>
