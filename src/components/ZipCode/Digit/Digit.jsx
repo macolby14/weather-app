@@ -9,6 +9,7 @@ const Digit = props => {
     if (props.hasFocus) {
       textInput.current.focus();
       textInput.current.selectionStart = 0;
+      textInput.current.selectionEnd = 0;
     }
   }, [props.value, props.hasFocus]);
 
