@@ -3,7 +3,19 @@ import React from "react";
 import classes from "./WeatherBlock.module.css";
 
 const WeatherBlock = props => {
-  const classList = [classes.WeatherBlock, props.additionalClasses].join(" ");
+  console.log(props.additionalClasses.length);
+  const additionalClassesStr = props.additionalClasses.reduce(
+    (outputStr, currentVal) => {
+      console.log(currentVal);
+      outputStr += classes[currentVal] + " ";
+      console.log("WeatherBlock reduce:\n", outputStr);
+      return outputStr;
+    },
+    ""
+  );
+
+  const classList = [classes.WeatherBlock, additionalClassesStr].join(" ");
+  console.log("Inside Weather Block:\n", classList);
 
   let feelsLike = null;
   if (props.date === "Today") {

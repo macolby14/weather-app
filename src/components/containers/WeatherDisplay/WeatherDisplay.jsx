@@ -91,9 +91,7 @@ class WeatherDisplay extends React.Component {
       searchFields = null;
       displayFields = (
         <React.Fragment>
-          <Title>
-            Here's the weather for you in {this.state.weather.name}:
-          </Title>
+          <Title>Here's the weather in {this.state.weather.name}:</Title>
           <CurrentWeather weather={this.state.weather} />
           <FutureWeather />
         </React.Fragment>

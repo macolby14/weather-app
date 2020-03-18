@@ -8,7 +8,7 @@ const CurrentWeather = props => {
     <div className={classes.CurrentWeather}>
       <WeatherBlock
         weather={props.weather}
-        additionalClasses="col-5"
+        additionalClasses={["col-6", "desk-col-3"]}
         date="Today"
       />
     </div>
