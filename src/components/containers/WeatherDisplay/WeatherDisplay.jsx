@@ -2,6 +2,8 @@ import React from "react";
 
 import Title from "../../Title/Title";
 import ZipCode from "../../ZipCode/ZipCode";
+import Button from "../../Button/Button";
+import classes from "./WeatherDisplay.module.css";
 
 class WeatherDisplay extends React.Component {
   state = {
@@ -17,16 +19,22 @@ class WeatherDisplay extends React.Component {
     this.setState({ digits: copyDigits, activeDigitIndex: newDigitIndex });
   };
 
+  searchClickHandler = () => {
+    const searchZipCode = this.state.digits.join("");
+    console.log("Button clicked - asking for weather in", searchZipCode);
+    //will need to send to api and get back data
+  };
+
   render() {
     return (
-      <div className="WeatherDisplay">
+      <div className={classes.WeatherDisplay}>
         <Title> What's the weather? </Title>
         <ZipCode
           digits={this.state.digits}
           digitChanged={this.digitChangedHandler}
           activeDigitIndex={this.state.activeDigitIndex}
         />
-        <h5>Go Button</h5>
+        <Button click={this.searchClickHandler}>Search</Button>
       </div>
     );
   }
