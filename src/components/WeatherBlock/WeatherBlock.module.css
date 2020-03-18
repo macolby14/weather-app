@@ -1,0 +1,19 @@
+.WeatherBlock {
+  background-color: transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  border: 1px solid #49089e;
+  border-radius: 10px;
+}
+
+p {
+  margin: 0 auto;
+  font-size: 1.1em;
+}
+
+img {
+  margin: 0 auto;
+}
