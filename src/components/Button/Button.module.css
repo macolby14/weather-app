@@ -24,9 +24,16 @@
   }
 }
 
-@media (min-with: 600px) {
+@media (orientation: portrait) and (min-width: 600px) {
   .Button {
     width: 30%;
+    font-size: 2em;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 1000px) {
+  .Button {
+    font-size: 2em;
   }
 }
 

@@ -12,7 +12,7 @@
 
 p {
   margin: 0 auto;
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 
 p strong {
@@ -70,6 +70,17 @@ img {
   }
 }
 
+@media (min-width: 800px) {
+  p {
+    margin: 0 auto;
+    font-size: 2em;
+  }
+
+  p strong {
+    font-size: 2em;
+  }
+}
+
 /* Will be applied to mobile devices */
 @media (max-width: 1000px) {
   .desktop-only {
@@ -78,6 +89,15 @@ img {
 }
 
 @media (min-width: 1000px) {
+  p {
+    margin: 0 auto;
+    font-size: 2em;
+  }
+
+  p strong {
+    font-size: 2em;
+  }
+
   .desk-col-1 {
     width: 8.33%;
   }
