@@ -60,7 +60,6 @@ class WeatherDisplay extends React.Component {
 
   searchClickHandler = () => {
     const searchZipCode = this.state.digits.join("");
-    console.log("Button clicked - asking for weather in", searchZipCode);
     //will need to send to api and get back data
     this.axiosInstance
       .get("/weather?zip=96734,us&appid=")
@@ -68,7 +67,6 @@ class WeatherDisplay extends React.Component {
         this.setState({ weather: response.data });
       })
       .catch(error => {
-        console.log(error);
         alert("Error in searchClickHandler in WeatherDisplay.jsx");
       });
   };
