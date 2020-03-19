@@ -91,7 +91,7 @@ class WeatherDisplay extends React.Component {
         <React.Fragment>
           <Title>Here's the weather in {this.state.weather.name}:</Title>
           <CurrentWeather weather={this.state.weather} />
-          <FutureWeather />
+          <FutureWeather weather={this.state.weather} />
         </React.Fragment>
       );
     }
