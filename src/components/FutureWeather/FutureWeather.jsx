@@ -4,35 +4,31 @@ import classes from "./FutureWeather.module.css";
 import WeatherBlock from "../WeatherBlock/WeatherBlock";
 
 const FutureWeather = props => {
-  return (
-    <div className={classes.FutureWeather}>
+  const weatherBlocks = props.forecast.map((dayWeather, i) => {
+    //determine the date to display at top of each WeatherBlock component
+    //could process this in the WeatherBlock to make cleaner
+    const weatherDate = new Date(dayWeather.dt * 1000);
+    const dateAsStr = weatherDate.getMonth() + 1 + "/" + weatherDate.getDate();
+
+    //determine howmany to display... 3 or 4 base on the screen size by adding classes
+    const additionalClasses =
+      i < 3 ? ["col-3", "desk-col-2"] : ["desk-col-2", "desktop-only"];
+
+    let iconStr = dayWeather.weather[0].icon;
+    iconStr = iconStr.replace("n", "d");
+    dayWeather.weather[0].icon = iconStr;
+
+    return (
       <WeatherBlock
-        weather={props.weather}
-        additionalClasses={["col-3", "desk-col-2"]}
-        date="3/19"
+        weather={dayWeather}
+        additionalClasses={additionalClasses}
+        date={dateAsStr}
+        key={dateAsStr}
       />
-      <WeatherBlock
-        weather={props.weather}
-        additionalClasses={["col-3", "desk-col-2"]}
-        date="3/20"
-      />
-      <WeatherBlock
-        weather={props.weather}
-        additionalClasses={["col-3", "desk-col-2"]}
-        date="3/21"
-      />
-      <WeatherBlock
-        weather={props.weather}
-        additionalClasses={["desk-col-2", "desktop-only"]}
-        date="3/22"
-      />
-      <WeatherBlock
-        weather={props.weather}
-        additionalClasses={["desk-col-2", "desktop-only"]}
-        date="3/23"
-      />
-    </div>
-  );
+    );
+  });
+
+  return <div className={classes.FutureWeather}>{weatherBlocks}</div>;
 };
 
 export default FutureWeather;

@@ -19,7 +19,6 @@ const WeatherBlock = props => {
       <p>Feels Like: {Math.round(props.weather.main.feels_like) + "°F"}</p>
     );
   }
-  console.log("props.weather: ", props.weather);
   return (
     <div className={classList}>
       <p>
@@ -34,7 +33,7 @@ const WeatherBlock = props => {
         }
         alt={props.weather.weather[0].main}
       />
-      <p>{Math.round(props.weather.main.temp) + "°F"}F</p>
+      <p>{Math.round(props.weather.main.temp) + "°F"}</p>
       {feelsLike}
     </div>
   );
