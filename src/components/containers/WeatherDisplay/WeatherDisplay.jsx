@@ -62,6 +62,12 @@ class WeatherDisplay extends React.Component {
       });
   };
 
+  clearSearchHandler = () => {
+    this.setState({ weather: null });
+    this.setState({ forecast: null });
+    this.setState({ digits: [null, null, null, null, null] });
+  };
+
   processForecast = data => {
     const shortenedForecast = [];
     //list comes in sets of every 3 hrs, starting now
@@ -94,7 +100,7 @@ class WeatherDisplay extends React.Component {
           <Title>Here's the weather in {this.state.weather.name}:</Title>
           <CurrentWeather weather={this.state.weather} />
           <FutureWeather forecast={this.state.forecast} />
-          <Button>Search Again</Button>
+          <Button click={this.clearSearchHandler}>Search Again</Button>
         </React.Fragment>
       );
     }
