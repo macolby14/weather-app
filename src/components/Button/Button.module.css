@@ -12,5 +12,26 @@
   box-sizing: border-box;
   border: 2px white solid;
   border-radius: 10px;
-  width: 35%;
+  width: 60%;
+  height: 10%;
+}
+
+@media (orientation: landscape) {
+  .Button {
+    font-size: 1em;
+    width: 30%;
+    padding: 0;
+  }
+}
+
+@media (min-with: 600px) {
+  .Button {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Button {
+    width: 15%;
+  }
 }
