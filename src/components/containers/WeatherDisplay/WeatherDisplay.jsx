@@ -7,13 +7,16 @@ import ZipCode from "../../ZipCode/ZipCode";
 import Button from "../../Button/Button";
 import CurrentWeather from "../../CurrentWeather/CurrentWeather";
 import FutureWeather from "../../FutureWeather/FutureWeather";
+import Spinner from "../../Spinner/Spinner";
 
 class WeatherDisplay extends React.Component {
   state = {
     digits: [null, null, null, null, null],
     activeDigitIndex: 0,
     weather: null,
-    forecast: null
+    forecast: null,
+    loadingCurrent: false,
+    loadingForecast: false
   };
 
   componentDidMount() {
@@ -31,6 +34,7 @@ class WeatherDisplay extends React.Component {
   };
 
   searchClickHandler = () => {
+    this.setState({ loadingWeather: true, loadingForecast: true });
     const searchZipCode = this.state.digits.join("");
 
     //api for current weather by zip code
@@ -41,7 +45,7 @@ class WeatherDisplay extends React.Component {
           ",us&units=imperial&appid="
       )
       .then(response => {
-        this.setState({ weather: response.data });
+        this.setState({ weather: response.data, loadingCurrent: false });
       })
       .catch(error => {
         alert("Error in searchClickHandler in WeatherDisplay.jsx");
@@ -55,7 +59,10 @@ class WeatherDisplay extends React.Component {
           ",us&units=imperial&appid="
       )
       .then(response => {
-        this.setState({ forecast: this.processForecast(response.data) });
+        this.setState({
+          forecast: this.processForecast(response.data),
+          loadingForecast: false
+        });
       })
       .catch(error => {
         alert("Error in searchClickHandler in WeatherDisplay.jsx");
@@ -92,6 +99,15 @@ class WeatherDisplay extends React.Component {
         <Button click={this.searchClickHandler}>Search</Button>
       </React.Fragment>
     );
+
+    if (this.state.loadingCurrent || this.state.loadingForecast) {
+      searchFields = (
+        <React.Fragment>
+          <Title> What's the weather? </Title>
+          <Spinner />
+        </React.Fragment>
+      );
+    }
 
     if (this.state.weather && this.state.forecast) {
       searchFields = null;
