@@ -16,12 +16,12 @@ class WeatherDisplay extends React.Component {
     weather: null,
     forecast: null,
     loadingCurrent: false,
-    loadingForecast: false
+    loadingForecast: false,
   };
 
   componentDidMount() {
     this.axiosInstance = axios.create({
-      baseURL: "https://api.openweathermap.org/data/2.5"
+      baseURL: "https://api.openweathermap.org/data/2.5",
     });
   }
 
@@ -42,29 +42,32 @@ class WeatherDisplay extends React.Component {
       .get(
         "/weather?zip=" +
           searchZipCode +
-          ",us&units=imperial&appid="
+          ",us&units=imperial&appid=" +
+          process.env.REACT_APP_WEATHERID
       )
-      .then(response => {
+      .then((response) => {
         this.setState({ weather: response.data, loadingCurrent: false });
       })
-      .catch(error => {
+      .catch((error) => {
         alert("Error in searchClickHandler in WeatherDisplay.jsx");
       });
 
     //api for future weather by zip code
+    console.log("[WeatherDisplay.jsx]", process.env);
     this.axiosInstance
       .get(
         "/forecast?zip=" +
           searchZipCode +
-          ",us&units=imperial&appid="
+          ",us&units=imperial&appid=" +
+          process.env.REACT_APP_WEATHERID
       )
-      .then(response => {
+      .then((response) => {
         this.setState({
           forecast: this.processForecast(response.data),
-          loadingForecast: false
+          loadingForecast: false,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         alert("Error in searchClickHandler in WeatherDisplay.jsx");
       });
   };
@@ -75,7 +78,7 @@ class WeatherDisplay extends React.Component {
     this.setState({ digits: [null, null, null, null, null] });
   };
 
-  processForecast = data => {
+  processForecast = (data) => {
     const shortenedForecast = [];
     //list comes in sets of every 3 hrs, starting now
     //start at 8 sets down (24 hours in the future)
