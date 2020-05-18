@@ -20,10 +20,10 @@ const ZipCode = (props) => {
   });
 
   return (
-    <div className={classes.ZipCode}>
+    <React.Fragment>
       <div className={classes.EnterText}>Enter your Zip Code</div>
-      {digits}
-    </div>
+      <div className={classes.ZipCode}>{digits}</div>
+    </React.Fragment>
   );
 };
 

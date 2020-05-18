@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./WeatherBlock.module.css";
 
-const WeatherBlock = props => {
+const WeatherBlock = (props) => {
   const additionalClassesStr = props.additionalClasses.reduce(
     (outputStr, currentVal) => {
       outputStr += classes[currentVal] + " ";
