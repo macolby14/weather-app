@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 
 import classes from "./Digit.module.css";
 
-const Digit = props => {
+const Digit = (props) => {
   const textInput = useRef(null);
 
   useEffect(() => {
@@ -20,8 +20,9 @@ const Digit = props => {
         value={props.value ? props.value : ""}
         type="text"
         size="1"
+        inputmode="numeric"
         /*maxLength="1"*/
-        onInput={e => {
+        onInput={(e) => {
           if (e.target.value) {
             e.target.value = e.target.value[0];
           }
