@@ -14,6 +14,7 @@ const ZipCode = (props) => {
         digitChanged={(e) => {
           props.digitChanged(e, i);
         }}
+        deleting={props.deleting}
         hasFocus={shouldHaveFocus}
       />
     );

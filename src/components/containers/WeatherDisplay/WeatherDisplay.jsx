@@ -19,6 +19,7 @@ class WeatherDisplay extends React.Component {
     loadingCurrent: false,
     loadingForecast: false,
     errorMessage: null,
+    deleting: false,
   };
 
   componentDidMount() {
@@ -28,11 +29,21 @@ class WeatherDisplay extends React.Component {
   }
 
   digitChangedHandler = (e, digitIndex) => {
+    //console.log("[WeatherDisplay.jsx] digitChangedHandler(");
+    let newDeleting = false;
     const copyDigits = [...this.state.digits]; //avoid changing state directly
     copyDigits[digitIndex] = e.target.value;
     const digitIsEmpty = copyDigits[digitIndex] === "";
-    const newDigitIndex = digitIsEmpty ? digitIndex : digitIndex + 1;
-    this.setState({ digits: copyDigits, activeDigitIndex: newDigitIndex });
+    let newDigitIndex = digitIsEmpty ? digitIndex : digitIndex + 1;
+    if (digitIsEmpty && this.state.digits[digitIndex] !== "") {
+      newDigitIndex--;
+      newDeleting = true;
+    }
+    this.setState({
+      digits: copyDigits,
+      activeDigitIndex: newDigitIndex,
+      deleting: newDeleting,
+    });
   };
 
   searchClickHandler = () => {
@@ -128,6 +139,7 @@ class WeatherDisplay extends React.Component {
           digits={this.state.digits}
           digitChanged={this.digitChangedHandler}
           activeDigitIndex={this.state.activeDigitIndex}
+          deleting={this.state.deleting}
         />
         {error}
         <Button click={this.searchClickHandler}>Search</Button>

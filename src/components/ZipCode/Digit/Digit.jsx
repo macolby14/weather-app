@@ -7,11 +7,13 @@ const Digit = (props) => {
 
   useEffect(() => {
     if (props.hasFocus) {
+      // console.log("[Digit.jsx] useEffect()");
+      // console.log(props.value);
       textInput.current.focus();
-      textInput.current.selectionStart = 0;
-      textInput.current.selectionEnd = 0;
+      textInput.current.selectionStart = props.value && props.deleting ? 1 : 0;
+      textInput.current.selectionEnd = props.value && props.deleting ? 1 : 0;
     }
-  }, [props.value, props.hasFocus]);
+  }, [props.value, props.hasFocus, props.deleting]);
 
   return (
     <div className={classes.Digit}>
