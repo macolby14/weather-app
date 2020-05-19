@@ -20,7 +20,7 @@ const Digit = (props) => {
         value={props.value ? props.value : ""}
         type="text"
         size="1"
-        inputmode="numeric"
+        inputMode="numeric"
         /*maxLength="1"*/
         onInput={(e) => {
           if (e.target.value) {

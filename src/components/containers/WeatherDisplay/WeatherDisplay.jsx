@@ -95,7 +95,6 @@ class WeatherDisplay extends React.Component {
       errorMessage: errorString,
       loadingForecast: false,
     });
-    console.log(errorResponse);
   };
 
   clearSearchHandler = () => {
