@@ -8,6 +8,7 @@ import Button from "../../Button/Button";
 import CurrentWeather from "../../CurrentWeather/CurrentWeather";
 import FutureWeather from "../../FutureWeather/FutureWeather";
 import Spinner from "../../Spinner/Spinner";
+import ErrorMessage from "../../ErrorMessage/ErrorMessage";
 
 class WeatherDisplay extends React.Component {
   state = {
@@ -17,6 +18,7 @@ class WeatherDisplay extends React.Component {
     forecast: null,
     loadingCurrent: false,
     loadingForecast: false,
+    errorMessage: null,
   };
 
   componentDidMount() {
@@ -46,14 +48,17 @@ class WeatherDisplay extends React.Component {
           process.env.REACT_APP_WEATHERID
       )
       .then((response) => {
-        this.setState({ weather: response.data, loadingCurrent: false });
+        this.setState({
+          weather: response.data,
+          loadingCurrent: false,
+          errorMessage: null,
+        });
       })
       .catch((error) => {
-        alert("Error in searchClickHandler in WeatherDisplay.jsx");
+        this.handleError(error.response);
       });
 
-    //api for future weather by zip code
-    console.log("[WeatherDisplay.jsx]", process.env);
+    //api for f
     this.axiosInstance
       .get(
         "/forecast?zip=" +
@@ -65,11 +70,32 @@ class WeatherDisplay extends React.Component {
         this.setState({
           forecast: this.processForecast(response.data),
           loadingForecast: false,
+          errorMessage: null,
         });
       })
       .catch((error) => {
-        alert("Error in searchClickHandler in WeatherDisplay.jsx");
+        this.handleError(error.response);
       });
+  };
+
+  handleError = (errorResponse) => {
+    let errorString = "";
+    if (errorResponse.status === 400 || errorResponse.status === 404) {
+      errorString = errorResponse.data.message;
+      errorString = errorString
+        .split(" ")
+        .map((word) => {
+          return word.charAt(0).toUpperCase() + word.substring(1);
+        })
+        .join(" ");
+    } else {
+      errorString = "Something went wrong";
+    }
+    this.setState({
+      errorMessage: errorString,
+      loadingForecast: false,
+    });
+    console.log(errorResponse);
   };
 
   clearSearchHandler = () => {
@@ -91,6 +117,11 @@ class WeatherDisplay extends React.Component {
 
   render() {
     let displayFields = null;
+
+    let error = this.state.errorMessage ? (
+      <ErrorMessage errorMessage={this.state.errorMessage} />
+    ) : null;
+
     let searchFields = (
       <React.Fragment>
         <Title> What's the weather? </Title>
@@ -99,6 +130,7 @@ class WeatherDisplay extends React.Component {
           digitChanged={this.digitChangedHandler}
           activeDigitIndex={this.state.activeDigitIndex}
         />
+        {error}
         <Button click={this.searchClickHandler}>Search</Button>
       </React.Fragment>
     );
