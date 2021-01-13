@@ -1,6 +1,6 @@
-# Weather App with React and Firebase
+# Weather App with React
 
-## A responsive weather look-up application. Built from scratch.
+## A responsive weather look-up application. Built from scratch with React.
 
 ## 
 
