@@ -1,8 +1,20 @@
-This is a responsive Weather App created using React.
+# Weather App with React and Firebase
 
-Enter your ZipCode, and it will give you the weather for that area.
+## A responsive weather look-up application. Built from scratch.
 
-Uses React, Axios, JavaScript, HTML5, CSS3, and Firebase hosting.
+## 
 
-Designed/built from scratch with create-react-app to practice using React and Axios.
+### Enter your zipcode and it will the weather for your area. 
+
+### Technologies:
+React
+Javascript
+CSS (CSS Modules) 
+HTML
+
+### Preview: 
+![Homepage](/screenshots/homepage.jpg)
+
+![Results](/screenshots/results.jpg)
+
 
