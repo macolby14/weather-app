@@ -7,10 +7,10 @@
 ### Enter your zipcode and it will the weather for your area. 
 
 ### Technologies:
-React
-Javascript
-CSS (CSS Modules) 
-HTML
+* React
+* Javascript
+* CSS (CSS Modules) 
+* HTML
 
 ### Preview: 
 ![Homepage](/screenshots/homepage.jpg)
